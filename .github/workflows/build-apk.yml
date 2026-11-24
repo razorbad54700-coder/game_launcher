@@ -33,6 +33,25 @@ jobs:
         working-directory: ${{ steps.p.outputs.dir }}
         run: flutter pub get
 
+      - name: Icone personnalisee (si assets/icon/icon.png existe)
+        working-directory: ${{ steps.p.outputs.dir }}
+        run: |
+          if [ -f assets/icon/icon.png ]; then
+            flutter pub add --dev flutter_launcher_icons
+            cat > flutter_launcher_icons.yaml <<'CFG'
+          flutter_launcher_icons:
+            android: true
+            ios: false
+            image_path: "assets/icon/icon.png"
+            adaptive_icon_background: "#05060B"
+            adaptive_icon_foreground: "assets/icon/icon.png"
+            adaptive_icon_foreground_inset: 16
+          CFG
+            dart run flutter_launcher_icons
+          else
+            echo "Pas d'icone personnalisee : icone Flutter par defaut."
+          fi
+
       - name: Compiler l'APK
         working-directory: ${{ steps.p.outputs.dir }}
         run: flutter build apk --release
