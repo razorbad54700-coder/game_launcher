@@ -1,0 +1,27 @@
+name: game_launcher
+description: "Game Launcher futuriste : carrousel 3D, Mode Gaming, musique d'ambiance."
+publish_to: "none"
+version: 2.0.0+1
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  audioplayers: ^6.1.0
+  shared_preferences: ^2.3.0
+  # Code Android du lanceur (liste des jeux, RAM, batterie, Ne pas déranger).
+  # C'est un plugin local : il se branche tout seul, aucun fichier Android à
+  # modifier à la main.
+  game_launcher_native:
+    path: packages/game_launcher_native
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/audio/

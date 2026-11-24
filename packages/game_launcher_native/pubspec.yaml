@@ -1,0 +1,19 @@
+name: game_launcher_native
+description: Pont Android du Game Launcher (liste des jeux, RAM, batterie, Ne pas déranger).
+version: 2.0.0
+publish_to: none
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.gamelauncher.nativebridge
+        pluginClass: GameLauncherNativePlugin

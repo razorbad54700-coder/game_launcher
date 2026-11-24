@@ -1,0 +1,6 @@
+# Réglages d'analyse volontairement simples (aucun paquet de lint à installer).
+analyzer:
+  errors:
+    # Les avertissements de style ne doivent jamais empêcher de lancer l'appli.
+    unused_import: warning
+    unused_local_variable: warning

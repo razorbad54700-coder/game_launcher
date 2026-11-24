@@ -1,0 +1,48 @@
+group = 'com.gamelauncher.nativebridge'
+version = '2.0.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.5.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+// Même version d'Android SDK que l'appli si Flutter la fournit, sinon 36.
+def resolveCompileSdk() {
+    try {
+        def v = flutter.compileSdkVersion
+        if (v != null) {
+            return v as int
+        }
+    } catch (Throwable ignored) {
+        // L'extension « flutter » n'est pas visible ici : valeur par défaut.
+    }
+    return 36
+}
+
+android {
+    namespace = 'com.gamelauncher.nativebridge'
+    compileSdk = resolveCompileSdk()
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    defaultConfig {
+        minSdk = 21
+    }
+}
